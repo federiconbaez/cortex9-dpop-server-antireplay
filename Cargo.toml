@@ -1,0 +1,31 @@
+[package]
+name = "dpop-server-antireplay"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.98"
+license = "Apache-2.0"
+description = "Measured server-side anti-replay behaviour of DPoP (RFC 9449) verifiers: jti, nonce, clock skew, concurrent replay and replay-store flooding, on dpop-auth, skyauth and a small reference verifier"
+publish = false
+
+[lib]
+name = "dpop_server_antireplay"
+
+[dependencies]
+base64 = "0.22"
+hmac = "0.12"
+p256 = { version = "0.13", features = ["ecdsa"] }
+rand = "0.8"
+ring = "0.17"
+serde_json = "1"
+sha2 = "0.10"
+tokio = { version = "1", features = ["rt-multi-thread"] }
+# Systems under test, pinned to the exact versions measured.
+dpop-auth = { version = "=0.1.3", default-features = false }
+skyauth = { version = "=0.3.9", default-features = false }
+
+[profile.release]
+debug = false
+
+# Tests sign thousands of ES256 proofs; optimise dependencies in test builds.
+[profile.dev.package."*"]
+opt-level = 3

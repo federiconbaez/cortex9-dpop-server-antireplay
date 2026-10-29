@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - run: cargo fmt --all -- --check
+      - run: cargo clippy --all-targets -- -D warnings
+      - name: Tests (a skipped or ignored test fails the job)
+        run: |
+          cargo test --all-targets 2>&1 | tee test.log
+          if grep -E "[1-9][0-9]* ignored" test.log; then echo "ignored tests are not allowed"; exit 1; fi
+          passed=$(grep -oE "[0-9]+ passed" test.log | awk '{s+=$1} END {print s}')
+          echo "passed=$passed"
+          test "$passed" -ge 26
+
+  bench:
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Scenario matrix on the three verifiers (fails if a reference expectation or a flood window fails)
+        run: cargo run --release --bin dsa-bench -- --n 300 --concurrent 100 --throughput 2000 --flood 150000 --stale-wait 12 --csv ci-out/bench.csv --check
+      - name: Show third-party rows that differ from the expectation
+        run: grep ',NO,' ci-out/bench.csv || echo "none"
