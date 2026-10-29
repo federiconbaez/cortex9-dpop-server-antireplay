@@ -1,0 +1,85 @@
+sut,scenario,param,n,accepted,rejected,unavailable,challenged,expected,pass,metric,note
+dpop-auth-0.1.3,valid_fresh,,1000,1000,0,0,0,=1000,yes,,
+dpop-auth-0.1.3,replay_sequential,,1000,0,1000,0,0,=0,yes,,
+dpop-auth-0.1.3,replay_concurrent,threads=16,200,181,0,0,0,=200,NO,,proofs_accepted_more_than_once=19 extra_acceptances=20
+dpop-auth-0.1.3,iat_offset,-600s,20,0,20,0,0,=0,yes,,
+dpop-auth-0.1.3,iat_offset,-310s,20,0,20,0,0,policy,-,,
+dpop-auth-0.1.3,iat_offset,-290s,20,0,20,0,0,policy,-,,
+dpop-auth-0.1.3,iat_offset,-120s,20,0,20,0,0,policy,-,,
+dpop-auth-0.1.3,iat_offset,-65s,20,0,20,0,0,policy,-,,
+dpop-auth-0.1.3,iat_offset,-55s,20,20,0,0,0,policy,-,,
+dpop-auth-0.1.3,iat_offset,-30s,20,20,0,0,0,=20,yes,,
+dpop-auth-0.1.3,iat_offset,+0s,20,20,0,0,0,=20,yes,,
+dpop-auth-0.1.3,iat_offset,+30s,20,20,0,0,0,=20,yes,,
+dpop-auth-0.1.3,iat_offset,+55s,20,20,0,0,0,policy,-,,
+dpop-auth-0.1.3,iat_offset,+65s,20,0,20,0,0,policy,-,,
+dpop-auth-0.1.3,iat_offset,+120s,20,0,20,0,0,policy,-,,
+dpop-auth-0.1.3,iat_offset,+600s,20,0,20,0,0,=0,yes,,
+dpop-auth-0.1.3,throughput,threads=1,5000,5000,0,0,0,=5000,yes,15844.1,metric=verifications per second
+dpop-auth-0.1.3,throughput,threads=4,5000,5000,0,0,0,=5000,yes,62644.2,metric=verifications per second
+dpop-auth-0.1.3,flood_victims_before,,50,50,0,0,0,=50,yes,,
+dpop-auth-0.1.3,flood_attacker,flood=150000,150000,150000,0,0,0,policy,-,1.3,metric=flood seconds
+dpop-auth-0.1.3,flood_replay_old,flood=150000,50,50,0,0,0,=0,NO,,victim_proofs_still_in_iat_window=true
+dpop-auth-0.1.3,flood_honest_after,flood=150000,50,50,0,0,0,policy,-,,availability for a different client after the flood
+dpop-auth-0.1.3,flood_replay_new,flood=150000,50,39,11,0,0,=0,NO,,replays of the 50 honest proofs accepted just before
+skyauth-0.3.9,valid_fresh,,1000,1000,0,0,0,=1000,yes,,
+skyauth-0.3.9,replay_sequential,,1000,0,1000,0,0,=0,yes,,
+skyauth-0.3.9,replay_concurrent,threads=16,200,200,0,0,0,=200,yes,,proofs_accepted_more_than_once=0 extra_acceptances=0
+skyauth-0.3.9,iat_offset,-600s,20,0,20,0,0,=0,yes,,
+skyauth-0.3.9,iat_offset,-310s,20,0,20,0,0,policy,-,,
+skyauth-0.3.9,iat_offset,-290s,20,20,0,0,0,policy,-,,
+skyauth-0.3.9,iat_offset,-120s,20,20,0,0,0,policy,-,,
+skyauth-0.3.9,iat_offset,-65s,20,20,0,0,0,policy,-,,
+skyauth-0.3.9,iat_offset,-55s,20,20,0,0,0,policy,-,,
+skyauth-0.3.9,iat_offset,-30s,20,20,0,0,0,=20,yes,,
+skyauth-0.3.9,iat_offset,+0s,20,20,0,0,0,=20,yes,,
+skyauth-0.3.9,iat_offset,+30s,20,20,0,0,0,=20,yes,,
+skyauth-0.3.9,iat_offset,+55s,20,20,0,0,0,policy,-,,
+skyauth-0.3.9,iat_offset,+65s,20,0,20,0,0,policy,-,,
+skyauth-0.3.9,iat_offset,+120s,20,0,20,0,0,policy,-,,
+skyauth-0.3.9,iat_offset,+600s,20,0,20,0,0,=0,yes,,
+skyauth-0.3.9,throughput,threads=1,5000,5000,0,0,0,=5000,yes,6404.7,metric=verifications per second
+skyauth-0.3.9,throughput,threads=4,5000,5000,0,0,0,=5000,yes,24150.3,metric=verifications per second
+skyauth-0.3.9,flood_victims_before,,50,50,0,0,0,=50,yes,,
+skyauth-0.3.9,flood_attacker,flood=150000,150000,131022,0,18978,0,policy,-,3.2,metric=flood seconds
+skyauth-0.3.9,flood_replay_old,flood=150000,50,0,50,0,0,=0,yes,,victim_proofs_still_in_iat_window=true
+skyauth-0.3.9,flood_honest_after,flood=150000,50,0,0,50,0,policy,-,,availability for a different client after the flood
+skyauth-0.3.9,flood_replay_new,flood=150000,50,0,0,50,0,=0,yes,,replays of the 0 honest proofs accepted just before
+reference,valid_fresh,,1000,1000,0,0,0,=1000,yes,,
+reference,replay_sequential,,1000,0,1000,0,0,=0,yes,,
+reference,replay_concurrent,threads=16,200,200,0,0,0,=200,yes,,proofs_accepted_more_than_once=0 extra_acceptances=0
+reference,iat_offset,-600s,20,0,20,0,0,=0,yes,,
+reference,iat_offset,-310s,20,0,20,0,0,policy,-,,
+reference,iat_offset,-290s,20,0,20,0,0,policy,-,,
+reference,iat_offset,-120s,20,0,20,0,0,policy,-,,
+reference,iat_offset,-65s,20,0,20,0,0,policy,-,,
+reference,iat_offset,-55s,20,20,0,0,0,policy,-,,
+reference,iat_offset,-30s,20,20,0,0,0,=20,yes,,
+reference,iat_offset,+0s,20,20,0,0,0,=20,yes,,
+reference,iat_offset,+30s,20,20,0,0,0,=20,yes,,
+reference,iat_offset,+55s,20,20,0,0,0,policy,-,,
+reference,iat_offset,+65s,20,0,20,0,0,policy,-,,
+reference,iat_offset,+120s,20,0,20,0,0,policy,-,,
+reference,iat_offset,+600s,20,0,20,0,0,=0,yes,,
+reference,throughput,threads=1,5000,5000,0,0,0,=5000,yes,16714.5,metric=verifications per second
+reference,throughput,threads=4,5000,5000,0,0,0,=5000,yes,57076.5,metric=verifications per second
+reference,flood_victims_before,,50,50,0,0,0,=50,yes,,
+reference,flood_attacker,flood=150000,150000,4096,0,145904,0,policy,-,1.2,metric=flood seconds
+reference,flood_replay_old,flood=150000,50,0,50,0,0,=0,yes,,victim_proofs_still_in_iat_window=true
+reference,flood_honest_after,flood=150000,50,50,0,0,0,policy,-,,availability for a different client after the flood
+reference,flood_replay_new,flood=150000,50,0,50,0,0,=0,yes,,replays of the 50 honest proofs accepted just before
+dpop-auth-0.1.3,nonce_missing,,20,0,0,0,20,=0,yes,,challenged=20
+dpop-auth-0.1.3,nonce_first_use,,20,20,0,0,0,=20,yes,,
+dpop-auth-0.1.3,nonce_reuse_fresh_jti,,20,20,0,0,0,policy,-,,
+dpop-auth-0.1.3,nonce_forged,,20,0,0,0,20,=0,yes,,
+dpop-auth-0.1.3,nonce_after_wait,wait=12s,20,20,0,0,0,policy,-,,
+skyauth-0.3.9,nonce_missing,,20,0,0,0,20,=0,yes,,challenged=20
+skyauth-0.3.9,nonce_first_use,,20,20,0,0,0,=20,yes,,
+skyauth-0.3.9,nonce_reuse_fresh_jti,,20,20,0,0,0,policy,-,,
+skyauth-0.3.9,nonce_forged,,20,0,0,0,20,=0,yes,,
+skyauth-0.3.9,nonce_after_wait,wait=12s,20,0,0,0,20,policy,-,,
+reference,nonce_missing,,20,0,0,0,20,=0,yes,,challenged=20
+reference,nonce_first_use,,20,20,0,0,0,=20,yes,,
+reference,nonce_reuse_fresh_jti,,20,20,0,0,0,policy,-,,
+reference,nonce_forged,,20,0,0,0,20,=0,yes,,
+reference,nonce_after_wait,wait=12s,20,0,0,0,20,policy,-,,
